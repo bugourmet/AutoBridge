@@ -1,0 +1,54 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@cf277c60eb25467037889841efdb72551f06f6c3 # v4
+        with:
+          distribution: temurin
+          java-version: 17
+      - uses: gradle/actions/setup-gradle@ed408507eac070d1f99cc633dbcf757c94c7933a # v4
+        with:
+          # A signed release shouldn't depend on files restored from a shared cache.
+          cache-disabled: true
+      - run: chmod +x gradlew
+      - name: Test
+        run: ./gradlew test "-PappVersion=${GITHUB_REF_NAME}" --console=plain
+      - name: Decode keystore
+        env:
+          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+        run: |
+          if [ -z "$KEYSTORE_BASE64" ]; then echo "::error::KEYSTORE_BASE64 secret missing"; exit 1; fi
+          echo "$KEYSTORE_BASE64" | base64 -d > "$RUNNER_TEMP/release.jks"
+      - name: Build signed APK
+        env:
+          AUTOBRIDGE_KEYSTORE: ${{ runner.temp }}/release.jks
+          AUTOBRIDGE_KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          AUTOBRIDGE_KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          AUTOBRIDGE_KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+        run: ./gradlew assembleRelease "-PappVersion=${GITHUB_REF_NAME}" --console=plain
+      - name: Verify no INTERNET permission in APK
+        run: bash .github/scripts/check-no-internet.sh app/build/outputs/apk/release/app-release.apk
+      - name: Rename and checksum
+        run: |
+          APK="AutoBridge-${GITHUB_REF_NAME}.apk"
+          cp app/build/outputs/apk/release/app-release.apk "$APK"
+          sha256sum "$APK" > "$APK.sha256"
+          echo "APK=$APK" >> "$GITHUB_ENV"
+      - uses: softprops/action-gh-release@3bb12739c298aeb8a4eeaf626c5b8d85266b0e65 # v2
+        with:
+          files: |
+            ${{ env.APK }}
+            ${{ env.APK }}.sha256
+          generate_release_notes: true

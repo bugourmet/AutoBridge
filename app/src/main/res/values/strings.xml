@@ -1,0 +1,77 @@
+<resources>
+    <string name="app_name">AutoBridge</string>
+    <string name="listener_label">AutoBridge relay</string>
+    <string name="me">You</string>
+    <string name="slack">Slack</string>
+
+    <string name="channel_relay">Relayed messages</string>
+    <string name="channel_relay_desc">Copies of Slack messages shown in Android Auto</string>
+    <string name="channel_relay_quiet">Relayed messages (not in car)</string>
+    <string name="channel_relay_quiet_desc">Silent copies shown when relaying while not connected to Android Auto</string>
+    <string name="channel_errors">Delivery problems</string>
+
+    <string name="action_reply">Reply</string>
+    <string name="action_mark_read">Mark as read</string>
+    <string name="reply_failed_title">Reply not sent</string>
+    <string name="reply_failed_text">Couldn\'t deliver your reply to %1$s. Open Slack to send it.</string>
+    <string name="reply_failed_details">Couldn\'t deliver your reply to %1$s. Open Slack to send it.\n\nYour reply: %2$s</string>
+    <string name="reply_failed_notice">Your reply wasn\'t sent. Open Slack to send it when you\'re parked.</string>
+
+    <string name="settings_relay_section">Relay</string>
+    <string name="settings_relay">Relay to Android Auto</string>
+    <string name="settings_relay_desc">Show Slack notifications as Android Auto conversations</string>
+    <string name="settings_only_in_car">Only while connected to Android Auto</string>
+    <string name="settings_only_in_car_desc">Avoids duplicate notifications on your phone. Turn off to relay all the time, silently when not in the car.</string>
+    <string name="car_connected">Android Auto: connected</string>
+    <string name="car_not_connected">Android Auto: not connected</string>
+
+    <string name="settings_filters">Filters</string>
+    <string name="filter_dms_only">Direct messages only</string>
+    <string name="filter_dms_only_desc">Skip channels and group DMs</string>
+    <string name="filter_mentions_only">Mentions only in channels</string>
+    <string name="filter_mentions_only_desc">Only channel messages containing an @name. Mentions of other people count too.</string>
+    <string name="filter_allowed">Only these channels</string>
+    <string name="filter_allowed_desc">Leave empty to allow all channels. Group DMs count as channels.</string>
+    <string name="filter_blocked">Never these channels</string>
+    <string name="filter_blocked_desc">Blocked channels are never relayed</string>
+    <string name="filter_keywords">Muted keywords</string>
+    <string name="filter_keywords_desc">Messages containing these whole words aren\'t relayed</string>
+    <string name="hint_channel">Channel name</string>
+    <string name="hint_keyword">Word or phrase</string>
+
+    <string name="settings_workspaces">Workspaces</string>
+    <string name="workspaces_desc">Relay messages from each workspace. Names are added as Slack notifications arrive, and appear in conversation titles once there are two or more.</string>
+    <string name="workspaces_empty">None detected yet</string>
+    <string name="workspaces_forget">Forget detected workspaces</string>
+
+    <string name="settings_quick_replies">Quick replies</string>
+    <string name="quick_replies_title">Your replies</string>
+    <string name="quick_replies_desc">Offered as reply choices in Android Auto</string>
+    <string name="hint_quick_reply">New quick reply</string>
+    <string name="action_add">Add</string>
+    <string name="action_remove">Remove</string>
+    <string name="action_remove_item">Remove %1$s</string>
+
+    <string name="settings_permissions">Setup</string>
+    <string name="perm_listener">Notification access</string>
+    <string name="perm_listener_desc">Lets AutoBridge read Slack\'s notifications</string>
+    <string name="perm_post">Post notifications</string>
+    <string name="perm_post_desc">Needed to show relayed messages</string>
+    <string name="perm_battery">Battery optimization</string>
+    <string name="perm_battery_desc">Exempt AutoBridge so the relay isn\'t killed while driving</string>
+    <string name="perm_slack">Slack installed</string>
+    <string name="perm_slack_desc">AutoBridge relays notifications from the Slack app</string>
+    <string name="status_ok">OK</string>
+    <string name="status_missing">Missing</string>
+    <string name="action_grant">Grant</string>
+
+    <string name="settings_diagnostics">Diagnostics</string>
+    <string name="test_desc">While parked and connected to Android Auto, send a test message containing no Slack data. Replying to it reports that the reply wasn\'t sent, which is expected.</string>
+    <string name="test_send">Send test message</string>
+    <string name="test_sender">AutoBridge test</string>
+    <string name="test_text">This is a test message from AutoBridge.</string>
+    <string name="diagnostics_latest">Latest Slack notification (no names or message text)</string>
+    <string name="diagnostics_empty">None since the app started</string>
+    <string name="settings_auto_hint">In Android Auto settings, enable developer mode and Unknown sources, otherwise Auto hides notifications from sideloaded apps.</string>
+    <string name="settings_disclaimer">Unofficial. Not affiliated with or endorsed by Slack Technologies. No internet permission; nothing leaves your phone.</string>
+</resources>

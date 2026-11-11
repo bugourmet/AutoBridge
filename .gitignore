@@ -1,0 +1,43 @@
+# Build output
+.gradle/
+.kotlin/
+build/
+.cxx/
+.externalNativeBuild/
+captures/
+*.apk
+*.aab
+*.ap_
+*.apks
+*.dex
+*.class
+*.hprof
+*.log
+
+# Local machine config
+local.properties
+
+# Secrets and signing
+*.jks
+*.keystore
+*.p12
+*.pfx
+*.pem
+*.key
+*.sha256
+keystore.properties
+signing.properties
+secrets.properties
+.env
+.env.*
+
+# IDE and tools
+.idea/
+.vscode/
+.claude/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini

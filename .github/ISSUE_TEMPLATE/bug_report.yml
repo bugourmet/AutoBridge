@@ -1,0 +1,47 @@
+name: Bug report
+description: Something doesn't relay, reply or clear correctly
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What you did, what you expected, what happened instead.
+    validations:
+      required: true
+  - type: input
+    id: autobridge
+    attributes:
+      label: AutoBridge version
+    validations:
+      required: true
+  - type: input
+    id: slack
+    attributes:
+      label: Slack app version
+      description: Settings → Apps → Slack → version
+    validations:
+      required: true
+  - type: input
+    id: auto
+    attributes:
+      label: Android Auto version
+    validations:
+      required: true
+  - type: input
+    id: android
+    attributes:
+      label: Phone model and Android version
+    validations:
+      required: true
+  - type: dropdown
+    id: where
+    attributes:
+      label: Where
+      options: [Real car / head unit, Desktop Head Unit, Phone only]
+  - type: textarea
+    id: dump
+    attributes:
+      label: Notification dump (optional)
+      description: From a debug build, `adb logcat -s AutoBridgeDump`. Remove names and message text first.
+      render: text
